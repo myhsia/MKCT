@@ -1,0 +1,24 @@
+# Unnecessary files
+/build
+*.zip
+*.pdf
+*.curlopt
+
+# macOS DS
+.DS_Store
+
+# LaTeX aux files
+*.aux
+*.bbl
+*.bbl-SAVE-ERROR
+*.blg
+*.bcf
+*.fdb_latexmk
+*.fls
+*.log
+*.minted
+*.out
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.xml
