@@ -1,0 +1,76 @@
+\documentclass[preprint]{revtex4-2}
+
+\usepackage{mathtools, amssymb, fixdif, derivative, physics2, bm, bbm}
+\usephysicsmodule{ab, ab.braket, diagmat, xmat}
+\usepackage{lmodern}
+\usepackage[mono = false]{libertine}
+\usepackage[hidelinks, colorlinks]{hyperref}
+\makeatletter
+\let\oldHyPsd@CatcodeWarning\HyPsd@CatcodeWarning
+\renewcommand \HyPsd@CatcodeWarning [1]%
+  {\ifnum\pdfstrcmp{#1}{math shift}=0 \else \oldHyPsd@CatcodeWarning{#1} \fi}
+\pdfstringdefDisableCommands{\let\HyPsd@CatcodeWarning\@gobble}
+\makeatother
+\newtheorem{example}{Example}
+\DeclareRobustCommand \iu {\mathrm i}
+\DeclareRobustCommand \upe {\mathrm e}
+\usepackage{graphicx}
+
+\begin{document}
+
+\title{MKCT --- Quantum Dynamics from Memory Kernels}
+\author{Mingyu Xia}
+\affiliation{Laboratory of Theoretical and Computational Chemistry,
+  Westlake University}
+\email{xiamingyu@westlake.edu.cn}
+\date{Released 2025-12-01}
+
+\maketitle
+\tableofcontents
+
+\section{Quantum dynamics, correlation functions and memory kernels}
+
+\clearpage
+
+\section{Approximation of $\mathsf{K_{n+1}(t)}$ and the truncation
+  of MKCT}
+
+\subsection{Pad\'e approximations}
+
+A function can be expanded into a series
+\begin{equation}
+  y(x) \approx \sum_n^N \frac{y^{(n)}}{n!} x^n = \sum_n^N c_n x^n
+\end{equation}
+For the Taylor expansion, it can converge slowly.
+Pad\'e constructs a rational function $R(x)$
+\begin{equation}
+  R(x) = \frac{a_0 + a_1x + \cdots + a_m x^m}{1 + b_1x + \cdots + b_nx^n},
+\end{equation}
+such that the derivatives $R^{(n)} = f^{(n)}$, and Pad\'e approximation usually
+converge faster than that of Taylor.
+\begin{example}
+  Taylor and Pad\'e approximation for exponent.
+  \[
+    y(x) = \exp[-(2 + 2\iu)x] = \upe^{-\alpha x}
+  \]
+  The top 3, 5, 7, 8, 9, 11, 13 terms approximation of Taylor expansion and
+  Pad\'e are plotted as (\textsf{Python} source is avaliable at
+  \href{https://github.com/myhsia/MKCT/blob/main/source/Taylor_vs_Pade_Exponent.py}
+  {GitHub})
+  \begin{figure}[htbp]
+    \begin{minipage}{.48\linewidth}
+      \centering
+      \includegraphics[width = \linewidth, page = 1]
+        {../source/Taylor_vs_Pade_Exponent.pdf}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{.48\linewidth}
+      \centering
+      \includegraphics[width = \linewidth, page = 2]
+        {../source/Taylor_vs_Pade_Exponent.pdf}
+    \end{minipage}
+    \caption{Converge trends between Taylor and Pad\'e approximations}
+  \end{figure}
+\end{example}
+
+\end{document}
